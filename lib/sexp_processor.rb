@@ -160,7 +160,7 @@ class SexpProcessor
   # the Sexp type given.  Performs additional checks as specified by
   # the initializer.
 
-  def process(exp, next_exp=nil)
+  def process(exp)
     return nil if exp.nil?
     exp = self.rewrite(exp) if self.context.empty?
 
@@ -209,7 +209,7 @@ class SexpProcessor
       exp.shift if @auto_shift_type and meth != @default_method
 
       result = error_handler(type, exp_orig) do
-        self.send(meth, exp, next_exp)
+        self.send(meth, exp)
       end
 
       raise SexpTypeError, "Result must be a #{@expected}, was #{result.class}:#{result.inspect}" unless @expected === result
@@ -219,11 +219,10 @@ class SexpProcessor
       unless @strict then
         until exp.empty? do
           sub_exp = exp.shift
-          next_exp = exp.first
           sub_result = nil
           if Array === sub_exp then
             sub_result = error_handler(type, exp_orig) do
-              process(sub_exp, next_exp)
+              process(sub_exp)
             end
             raise "Result is a bad type" unless Array === sub_exp
             raise "Result does not have a type in front: #{sub_exp.inspect}" unless Symbol === sub_exp.first unless sub_exp.empty?
