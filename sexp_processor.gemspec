@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/fabiokung/sexp_processor/tree/master}
   s.rdoc_options = ["--main", "README.txt"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = "sexp_processor"
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{sexp_processor branches from ParseTree bringing all the generic sexp processing tools with it}
   s.test_files = ["test/test_composite_sexp_processor.rb", "test/test_environment.rb", "test/test_sexp.rb", "test/test_sexp_processor.rb"]
