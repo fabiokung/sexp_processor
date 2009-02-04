@@ -10,6 +10,7 @@ $TESTING ||= false # unless defined $TESTING
 class Sexp < Array # ZenTest FULL
 
   attr_writer :line
+  attr_writer :endline
   attr_accessor :file, :comments
 
   @@array_types = [ :array, :args, ]
@@ -174,6 +175,20 @@ class Sexp < Array # ZenTest FULL
       self
     else
       @line ||= nil
+    end
+  end
+
+  ##
+  # If passed a line number, sets the endline and returns self. Otherwise
+  # returns the endline number. This allows you to do message cascades
+  # and still get the sexp back.
+
+  def endline(n=nil)
+    if n then
+      @endline = n
+      self
+    else
+      @endline ||= nil
     end
   end
 
