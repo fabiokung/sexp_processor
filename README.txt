@@ -33,7 +33,7 @@ for your language processing pleasure.
 
 == INSTALL:
 
-* sudo gem install sexp_processor
+* sudo gem install fabiokung-sexp_processor -s http://gems.github.com
 
 == LICENSE:
 
